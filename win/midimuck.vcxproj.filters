@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{ab76337f-2b86-4fa0-b69e-7a6df50baa2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VST SDK DLLMain">
+      <UniqueIdentifier>{3621d103-ed68-4916-891d-3cbeabae6b8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{97d56757-45e9-4b6f-a9a0-ea97fa6a9921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="doc">
+      <UniqueIdentifier>{9f026d08-19f5-444c-980b-688e648c3aa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="doc\images">
+      <UniqueIdentifier>{e289dd4a-60c8-46d7-a1c9-f3bfe19b6d4f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\midimuck.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\midimuck_controller.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\midimuck_entry.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\midimuck_processor.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\externals\vst3sdk\public.sdk\source\main\dllmain.cpp">
+      <Filter>VST SDK DLLMain</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\midimuck.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\midimuck_controller.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\midimuck_ids.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\midimuck_processor.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\midimuck_version.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\resource\midimuck\resource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\resource\myplugineditor.uidesc">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="midimuck.def">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\readme.md" />
+    <None Include="..\LICENSE" />
+    <None Include="..\Doxyfile" />
+    <None Include="..\resource\midimuck\MidiMuck.uidesc">
+      <Filter>Resource</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\doc\images\VST_Compatible_Logo_Steinberg_with_TM_negative.png">
+      <Filter>doc\images</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\resource\midimuck\midimuck.rc">
+      <Filter>Resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
