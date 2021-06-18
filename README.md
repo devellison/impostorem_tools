@@ -27,8 +27,8 @@ VST is a registered trademark of Steinberg Media Technologies GmbH.
 
 
 ## About
-Impostorem Tools are just tools I use to play with music and video stuffs.
-They currently include VST plugins for use with the Pianoshooter visualizer.
+Impostorem Tools are tools I use to play with music and video stuffs.
+They currently include VST-compatible plugins for use with the Pianoshooter visualizer.
 - <b>MIDIMuck</b>:  <a href="http://www.midi.org">MIDI</a> utility knife for transforming / delaying / filtering MIDI
 - <b>BeatDelay</b>: Delays an audio stream by a number of beats (to synch it with video from Pianoshooter)
 
@@ -37,7 +37,7 @@ They currently include VST plugins for use with the Pianoshooter visualizer.
 Pianoshooter is a plugin for <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/plugins/ZGameEditor%20Visualizer.htm">ZGameEditor Visualizer</a>
 in <a href="https://www.image-line.com">FLStudio</a>.
 
-Currently only tested on Win64.  Plan to add MacOSX when I get time to do the XCode version.
+Currently only tested on Win64.  May port to Mac OSX when time allows (only a few points beyond project creation that need to be hit).
 
 ## MIDIMuck
 MIDIMuck is a VST plugin that takes a MIDI / Event stream as input, transforms it,
@@ -73,7 +73,9 @@ piano key to provide a synchronized video to the audio.
 <pre>
    mkdir externals
    cd externals
-   git clone --recursive git@github.com:steinbergmedia/vst3sdk.git
+   # I've had some issues with the recursive using SSH, so currently using https.
+   # git clone --recursive git@github.com:steinbergmedia/vst3sdk.git
+   git clone --recursive https://github.com/steinbergmedia/vst3sdk.git
    cd vst3sdk   
 
    git checkout v3.7.2_build_28
@@ -87,6 +89,6 @@ piano key to provide a synchronized video to the audio.
 - Then build the impostorem_tools.sln solution. You can do this in the GUI if desired,
   but it works fine from the command-line._
 <pre>
-   cd ..\..\win
+di   cd ..\..\..\win
    msbuild impostorem_tools.sln /t:Rebuild /p:Configuration=Release
 </pre>
