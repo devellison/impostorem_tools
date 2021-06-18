@@ -23,6 +23,7 @@ The Impostorem Tools include VST-compatible plugins and use the VST3 SDK under t
 VST is a registered trademark of Steinberg Media Technologies GmbH.
 
 - VST3 SDK: https://github.com/steinbergmedia/vst3sdk
+
 ![VST Logo and Trademark](doc/images/VST_Compatible_Logo_Steinberg_with_TM_negative.png)
 
 
@@ -87,8 +88,13 @@ piano key to provide a synchronized video to the audio.
    cmake --build . --config Release
 </pre>
 - Then build the impostorem_tools.sln solution. You can do this in the GUI if desired,
-  but it works fine from the command-line._
+  but it works fine from the command-line.
 <pre>
-di   cd ..\..\..\win
+   cd ..\..\..\win
    msbuild impostorem_tools.sln /t:Rebuild /p:Configuration=Release
+</pre>
+-  You'll want to copy the .\bin\x64\Release\*.vst3 files to your VST3 folder, or make symbolic links.  I prefer the latter when doing development.
+   You will likely need administrator rights and you'll need to tweak the paths for your environment:
+<pre>
+   mklink "C:\Program Files\Common Files\vst3\BeatDelay.vst3" D:\github\impostorem_tools\bin\x64\Release\BeatDelay.vst3
 </pre>
