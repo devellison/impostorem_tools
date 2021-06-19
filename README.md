@@ -71,50 +71,72 @@ piano key to provide a synchronized video to the audio.
   projects accordingly.
 
 - First, get and build vst3sdk (I build it in an `./externals` directory)
-<pre>
-   mkdir externals
-   cd externals
-   # I've had some issues with the recursive using SSH, so currently using https.
-   # git clone --recursive git@github.com:steinbergmedia/vst3sdk.git
-   git clone --recursive https://github.com/steinbergmedia/vst3sdk.git
-   cd vst3sdk   
 
-   git checkout v3.7.2_build_28
-   git submodule update
+      mkdir externals
+      cd externals
+      # I've had some issues with the recursive using SSH, so currently using https.
+      # git clone --recursive git@github.com:steinbergmedia/vst3sdk.git
+      git clone --recursive https://github.com/steinbergmedia/vst3sdk.git
+      cd vst3sdk   
+
+      git checkout v3.7.2_build_28
+      git submodule update
    
-   mkdir build
-   cd build
-   cmake.exe -G "Visual Studio 15 2017" -DSMTG_CREATE_BUNDLE_FOR_WINDOWS=OFF -DSMTG_ADD_VST3_PLUGINS_SAMPLE=OFF -DSMTG_ADD_VSTGUI=ON -DSMTG_CREATE_PLUGIN_LINK=OFF -DSMTG_USE_STATIC_CRT=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=.\vstsdk -A x64 ..
-   cmake --build . --config Release
-</pre>
+      mkdir build
+      cd build
+      cmake.exe -G "Visual Studio 15 2017" -DSMTG_CREATE_BUNDLE_FOR_WINDOWS=OFF -DSMTG_ADD_VST3_PLUGINS_SAMPLE=OFF -DSMTG_ADD_VSTGUI=ON -DSMTG_CREATE_PLUGIN_LINK=OFF -DSMTG_USE_STATIC_CRT=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=.\vstsdk -A x64 ..
+      cmake --build . --config Release
+
 - Then build the impostorem_tools.sln solution. You can do this in the GUI if desired,
   but it works fine from the command-line.
-<pre>
-   cd ..\..\..\win
-   msbuild impostorem_tools.sln /t:Rebuild /p:Configuration=Release
-</pre>
+
+      cd ..\..\..\win
+      msbuild impostorem_tools.sln /t:Rebuild /p:Configuration=Release
+
 -  You'll want to copy the .\bin\x64\Release\*.vst3 files to your VST3 folder, or make symbolic links.  I prefer the latter when doing development.
    You will likely need administrator rights and you'll need to tweak the paths for your environment:
-<pre>
-   mkdir "C:\Program Files\Common Files\vst3\Impostorem"
-   mklink "C:\Program Files\Common Files\vst3\Impostorem\BeatDelay.vst3" D:\github\impostorem_tools\bin\x64\Release\BeatDelay.vst3
-   mklink "C:\Program Files\Common Files\vst3\Impostorem\MIDIMuck.vst3" D:\github\impostorem_tools\bin\x64\Release\MIDIMuck.vst3
-</pre>
+
+       mkdir "C:\Program Files\Common Files\vst3\Impostorem"
+       mklink "C:\Program Files\Common Files\vst3\Impostorem\BeatDelay.vst3" D:\github\impostorem_tools\bin\x64\Release\BeatDelay.vst3
+       mklink "C:\Program Files\Common Files\vst3\Impostorem\MIDIMuck.vst3" D:\github\impostorem_tools\bin\x64\Release\MIDIMuck.vst3
+
+
+## Creating Documentation
+
+### Code
+The code is documented Doxygen-style, and a Doxyfile is in the base directory.
+By default it's set up to generate html.
+To generate docs you'll need:
+- Doxygen - https://www.doxygen.nl/download.html
+- GraphViz - https://graphviz.org/download/
+
+Then, you should be able to just run:
+
+     Doxygen Doxyfile
+
+Documentation will be placed in .\doc\html.
+
+### Installer Readme
+Converting the README.md to a PDF for the installer is a bit ugly right now.
+I'm using grip to serve the file, the printing to PDF and placing the file at ./doc/pdf/readme.pdf.
+This needs to be automated.
+
 
 ## Creating an Installer
 Using NSIS 3.06.1 right now for Win64, which is available here: https://prdownloads.sourceforge.net/nsis/nsis-3.06.1-setup.exe?download
 The installer includes Pianoshooter and LyricText (from separate repositories).
 
 - First collect the additional externals for the installer into the ./externals directory.
-<pre>
-  cd externals
-  git clone git@github.com:devellison/pianoshooter.git
-  git clone git@github.com:devellison/lyrictext.git
-  # Checkout desired versions here if you don't want latest
-</pre>
+
+      cd externals
+      git clone git@github.com:devellison/pianoshooter.git
+      git clone git@github.com:devellison/lyrictext.git
+      # Checkout desired versions here if you don't want latest
+
+- Create the documentation (see above documentation)
 - Then run `makensis.exe` on the installer script to create the installer.
-<pre>
-  cd ..\win
-  "C:\Program Files (x86)\NSIS\bin\makensis.exe"  impostorem_tools.nsi
-</pre>
+
+      cd ..\win
+      "C:\Program Files (x86)\NSIS\bin\makensis.exe"  impostorem_tools.nsi
+
 - The above outputs the executable installer in `..\bin`

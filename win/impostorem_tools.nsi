@@ -2,12 +2,13 @@ RequestExecutionLevel Admin
 Unicode True
 
 !define PRODUCT_NAME "Impostorem Tools"
-!define PRODUCT_VERSION "1.0.1.2"
+!define PRODUCT_VERSION "1.0.1.3"
 !define PRODUCT_PUBLISHER "Impostorem"
 !define PRODUCT_WEB_SITE "https://www.impostorem.com"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
+!include "LogicLib.nsh"
 !include "MUI.nsh"
 
 !define MUI_ABORTWARNING
@@ -25,7 +26,7 @@ Var ZGEV_DIR
 !insertmacro MUI_PAGE_DIRECTORY
 
 !insertmacro MUI_PAGE_INSTFILES
-!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\README.md"
+!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\README.pdf"
 !insertmacro MUI_PAGE_FINISH
 !insertmacro MUI_UNPAGE_INSTFILES
 !insertmacro MUI_LANGUAGE "English"
@@ -40,8 +41,12 @@ ShowUnInstDetails show
 
 Function .onInit
   ReadRegStr $FLUSERDATA HKLM "SOFTWARE\Image-Line\Shared\Paths" "Shared data"
+  
+  ${If} $FLUSERDATA == ""
+	StrCpy $FLUSERDATA $INSTDIR
+  ${EndIf}
+
   StrCpy $ZGEV_DIR "$FLUSERDATA\ZGameEditor Visualizer\Effects"
-;  StrCpy $ZGEV_DIR "$DOCUMENTS\Image-Line\ZGameEditor Visualizer\Effects"
 FunctionEnd
 
 Section "VST Plugins" SEC01
@@ -50,6 +55,7 @@ Section "VST Plugins" SEC01
   File "..\bin\x64\Release\BeatDelay.vst3"
   File "..\bin\x64\Release\MIDIMuck.vst3"
   File "..\README.md"
+  File "..\doc\pdf\README.pdf"
   File "..\LICENSE"
 
   SetOutPath "$INSTDIR\images"
@@ -106,6 +112,7 @@ Section Uninstall
   Delete "$INSTDIR\images\VST_Compatible_Logo_Steinberg_with_TM_negative.png"
   RMDir "$INSTDIR\images"
   Delete "$INSTDIR\README.md"
+  Delete "$INSTDIR\README.pdf"
   Delete "$INSTDIR\LICENSE"
   Delete "$INSTDIR\BeatDelay.vst3"
   Delete "$INSTDIR\MIDIMuck.vst3"
