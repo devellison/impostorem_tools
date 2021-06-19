@@ -96,5 +96,25 @@ piano key to provide a synchronized video to the audio.
 -  You'll want to copy the .\bin\x64\Release\*.vst3 files to your VST3 folder, or make symbolic links.  I prefer the latter when doing development.
    You will likely need administrator rights and you'll need to tweak the paths for your environment:
 <pre>
-   mklink "C:\Program Files\Common Files\vst3\BeatDelay.vst3" D:\github\impostorem_tools\bin\x64\Release\BeatDelay.vst3
+   mkdir "C:\Program Files\Common Files\vst3\Impostorem"
+   mklink "C:\Program Files\Common Files\vst3\Impostorem\BeatDelay.vst3" D:\github\impostorem_tools\bin\x64\Release\BeatDelay.vst3
+   mklink "C:\Program Files\Common Files\vst3\Impostorem\MIDIMuck.vst3" D:\github\impostorem_tools\bin\x64\Release\MIDIMuck.vst3
 </pre>
+
+## Creating an Installer
+Using NSIS 3.06.1 right now for Win64, which is available here: https://prdownloads.sourceforge.net/nsis/nsis-3.06.1-setup.exe?download
+The installer includes Pianoshooter and LyricText (from separate repositories).
+
+- First collect the additional externals for the installer into the ./externals directory.
+<pre>
+  cd externals
+  git clone git@github.com:devellison/pianoshooter.git
+  git clone git@github.com:devellison/lyrictext.git
+  # Checkout desired versions here if you don't want latest
+</pre>
+- Then run `makensis.exe` on the installer script to create the installer.
+<pre>
+  cd ..\win
+  "C:\Program Files (x86)\NSIS\bin\makensis.exe"  impostorem_tools.nsi
+</pre>
+- The above outputs the executable installer in `..\bin`
