@@ -2,7 +2,7 @@ RequestExecutionLevel Admin
 Unicode True
 
 !define PRODUCT_NAME "Impostorem Tools"
-!define PRODUCT_VERSION "1.0.1.3"
+!define PRODUCT_VERSION "1.0.1.4"
 !define PRODUCT_PUBLISHER "Impostorem"
 !define PRODUCT_WEB_SITE "https://www.impostorem.com"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
@@ -20,7 +20,7 @@ Unicode True
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 
-Var FLUSERDATA
+Var FLINSTALL
 Var ZGEV_DIR
 !define MUI_DIRECTORYPAGE_VARIABLE $ZGEV_DIR
 !insertmacro MUI_PAGE_DIRECTORY
@@ -40,13 +40,13 @@ ShowInstDetails show
 ShowUnInstDetails show
 
 Function .onInit
-  ReadRegStr $FLUSERDATA HKLM "SOFTWARE\Image-Line\Shared\Paths" "Shared data"
+  ReadRegStr $FLINSTALL HKLM "SOFTWARE\Image-Line\Shared\Paths" "Image-Line"
   
-  ${If} $FLUSERDATA == ""
-	StrCpy $FLUSERDATA $INSTDIR
+  ${If} $FLINSTALL == ""
+	StrCpy $FLINSTALL $INSTDIR
   ${EndIf}
 
-  StrCpy $ZGEV_DIR "$FLUSERDATA\ZGameEditor Visualizer\Effects"
+  StrCpy $ZGEV_DIR "$FLINSTALL\FL Studio 20\Plugins\Fruity\Effects\ZGameEditor Visualizer\Effects"
 FunctionEnd
 
 Section "VST Plugins" SEC01
