@@ -19,6 +19,7 @@
     <ClCompile Include="..\src\imp_vstparameter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\impostorem_tools.h" />
     <ClInclude Include="..\src\imp_param.h" />
     <ClInclude Include="..\src\imp_param_def.h" />
     <ClInclude Include="..\src\imp_platform.h" />

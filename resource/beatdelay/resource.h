@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by midimuck.rc
+// Used by beatdelay.rc
 //
 #define IDR_BEATDELAYUI                 102
 

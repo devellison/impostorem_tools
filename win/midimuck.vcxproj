@@ -34,6 +34,7 @@
     <None Include="..\readme.md" />
     <None Include="..\resource\midimuck\MidiMuck.uidesc" />
     <None Include="..\resource\myplugineditor.uidesc" />
+    <None Include="impostorem_tools.nsi" />
     <None Include="midimuck.def" />
   </ItemGroup>
   <ItemGroup>

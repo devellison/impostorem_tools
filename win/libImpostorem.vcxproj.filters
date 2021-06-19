@@ -25,6 +25,9 @@
     <ClInclude Include="..\src\imp_vstparameter.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\impostorem_tools.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\imp_utils.cpp">

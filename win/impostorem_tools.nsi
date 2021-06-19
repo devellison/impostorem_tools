@@ -2,7 +2,7 @@ RequestExecutionLevel Admin
 Unicode True
 
 !define PRODUCT_NAME "Impostorem Tools"
-!define PRODUCT_VERSION "1.0.0.1"
+!define PRODUCT_VERSION "1.0.1.2"
 !define PRODUCT_PUBLISHER "Impostorem"
 !define PRODUCT_WEB_SITE "https://www.impostorem.com"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
@@ -19,6 +19,7 @@ Unicode True
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 
+Var FLUSERDATA
 Var ZGEV_DIR
 !define MUI_DIRECTORYPAGE_VARIABLE $ZGEV_DIR
 !insertmacro MUI_PAGE_DIRECTORY
@@ -32,13 +33,15 @@ Var ZGEV_DIR
 ; MUI end ------
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "..\bin\ImpostoremTools_Winx64_Setup.exe"
+OutFile "..\bin\ImpostoremTools_${PRODUCT_VERSION}_Win64_Setup.exe"
 InstallDir "$COMMONFILES64\VST3\Impostorem"
 ShowInstDetails show
 ShowUnInstDetails show
 
 Function .onInit
-  StrCpy $ZGEV_DIR "$DOCUMENTS\Image-Line\ZGameEditor Visualizer\Effects"
+  ReadRegStr $FLUSERDATA HKLM "SOFTWARE\Image-Line\Shared\Paths" "Shared data"
+  StrCpy $ZGEV_DIR "$FLUSERDATA\ZGameEditor Visualizer\Effects"
+;  StrCpy $ZGEV_DIR "$DOCUMENTS\Image-Line\ZGameEditor Visualizer\Effects"
 FunctionEnd
 
 Section "VST Plugins" SEC01
@@ -66,16 +69,17 @@ Section -AdditionalIcons
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
   CreateDirectory "$SMPROGRAMS\Impostorem"
   CreateShortCut "$SMPROGRAMS\Impostorem\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
-  CreateShortCut "$SMPROGRAMS\Impostorem\Uninstall.lnk" "$INSTDIR\uninst.exe"
+  CreateShortCut "$SMPROGRAMS\Impostorem\Uninstall.lnk" "$INSTDIR\uninstall.exe"
 SectionEnd
 
 Section -Post
-  WriteUninstaller "$INSTDIR\uninst.exe"
+  WriteUninstaller "$INSTDIR\uninstall.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
-  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninstall.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "ZGEV_DIR" "$ZGEV_DIR"
 SectionEnd
 
 ; Section descriptions
@@ -91,19 +95,22 @@ Function un.onUninstSuccess
 FunctionEnd
 
 Function un.onInit
-  StrCpy $ZGEV_DIR "$DOCUMENTS\Image-Line\ZGameEditor Visualizer\Effects"
+  ReadRegStr $ZGEV_DIR ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "ZGEV_DIR"
   MessageBox MB_ICONQUESTION|MB_YESNO|MB_DEFBUTTON2 "Are you sure you want to completely remove $(^Name) and all of its components?" IDYES +2
   Abort
 FunctionEnd
 
 Section Uninstall
   Delete "$INSTDIR\${PRODUCT_NAME}.url"
-  Delete "$INSTDIR\uninst.exe"
-  Delete "$ZGEV_DIR\Midi\Pianoshooter.zgeproj"
-  Delete "$ZGEV_DIR\Text\LyricText.zgeproj"
+  Delete "$INSTDIR\uninstall.exe"
   Delete "$INSTDIR\images\VST_Compatible_Logo_Steinberg_with_TM_negative.png"
+  RMDir "$INSTDIR\images"
   Delete "$INSTDIR\README.md"
   Delete "$INSTDIR\LICENSE"
+  Delete "$INSTDIR\BeatDelay.vst3"
+  Delete "$INSTDIR\MIDIMuck.vst3"
+  Delete "$ZGEV_DIR\Midi\Pianoshooter.zgeproj"
+  Delete "$ZGEV_DIR\Text\LyricText.zgeproj"
 
   Delete "$SMPROGRAMS\Impostorem\Uninstall.lnk"
   Delete "$SMPROGRAMS\Impostorem\Website.lnk"

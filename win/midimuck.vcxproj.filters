@@ -67,6 +67,7 @@
     <None Include="..\resource\midimuck\MidiMuck.uidesc">
       <Filter>Resource</Filter>
     </None>
+    <None Include="impostorem_tools.nsi" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\doc\images\VST_Compatible_Logo_Steinberg_with_TM_negative.png">
