@@ -33,14 +33,18 @@ They currently include VST-compatible plugins for use with the Pianoshooter visu
 - <b>MIDIMuck</b>:  <a href="http://www.midi.org">MIDI</a> utility knife for transforming / delaying / filtering MIDI
 - <b>BeatDelay</b>: Delays an audio stream by a number of beats (to synch it with video from Pianoshooter)
 
-<a href="https://github.com/devellison/pianoshooter">PianoShooter</a> is available at https://github.com/devellison/pianoshooter.
+[Pianoshooter](https://github.com/devellison/pianoshooter) is a plugin for <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/plugins/ZGameEditor%20Visualizer.htm">ZGameEditor Visualizer</a>
+in <a href="https://www.image-line.com">FLStudio</a>. 
+It is also included in the Impostorem Tools installers (along with [LyricText](https://github.com/devellison/lyrictext) )
 
-Pianoshooter is a plugin for <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/plugins/ZGameEditor%20Visualizer.htm">ZGameEditor Visualizer</a>
-in <a href="https://www.image-line.com">FLStudio</a>.
+An example of a project using LyricText, PianoShooter, MIDIMuck, and BeatDelay is [Euterpe](https://www.youtube.com/watch?v=WEeOEKrbE9A).
 
-Currently only tested on Win64.  May port to Mac OSX when time allows (only a few points beyond project creation that need to be hit).
+Currently the plugins are only tested on Win64 (although LyricText and Pianoshooter have worked on Mac).  
+May port the plugins to Mac OSX when time allows (only a few points beyond project creation that need to be hit).
 
 ## MIDIMuck
+![MIDIMuck](doc/images/midimuck.png)
+
 MIDIMuck is a VST plugin that takes a MIDI / Event stream as input, transforms it,
 then outputs the modified stream.  Its main purpose is to take a copy of the input 
 MIDI used to play an instrument and tweak it to look nice in Pianoshooter.
@@ -56,14 +60,24 @@ Main features:
   pass through.  This is especially useful if you want to ignore key switches so
   they aren't displayed in PianoShooter.
 
-Set MIDIMuck to be a generator, but chain it in patcher. Docs/videos on usage soon.
+Set MIDIMuck to be a generator, but chain it in patcher. 
+
+For example, one channel's setup in [Euterpe](https://www.youtube.com/watch?v=WEeOEKrbE9A) looks like
+the image below. One MIDI source is being tweaked and sent to three different channels in Kontakt as well
+as being routed and tweaked separately to be sent back to FL Studio for ZGameEditor Visualizer and the PianoShooter.
+
+![routing](doc/images/routing.png)
 
 ## BeatDelay
+![Beat Delay](doc/images/beatdelay.png)
+
 BeatDelay delays the audio stream the set number of beats without adding additional effects.
 
 This is useful when using Pianoshooter in the Player mode, where the MIDI is output
 when the note should be created - you delay the sound until it actually hits the
 piano key to provide a synchronized video to the audio.
+
+Generally I put this in a pre-master mixing channel.
 
 ## Building
 - Currently only tested with Microsoft Visual C++ 2017 Community. If you're using

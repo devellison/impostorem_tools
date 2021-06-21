@@ -159,12 +159,12 @@
 							"max-value": "1",
 							"min-value": "0",
 							"mouse-enabled": "true",
-							"opacity": "1",
+							"opacity": "0",
 							"origin": "10, 0",
 							"round-rect-radius": "0",
 							"size": "100, 20",
 							"title": "Bypass",
-							"transparent": "false",
+							"transparent": "yes",
 							"wants-focus": "true",
 							"wheel-inc-value": "0.1"
 						}

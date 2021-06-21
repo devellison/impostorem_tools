@@ -15,6 +15,20 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "beatdelay", "beatdelay.vcxp
 		{8D121265-A203-456A-BE57-332380E4C82C} = {8D121265-A203-456A-BE57-332380E4C82C}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{9B30A410-8094-44B0-B3B7-39A075F7C7DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pianoshooter", "Pianoshooter", "{1CCCAF87-45BD-4F37-AED4-EF7B3AA4C9BC}"
+	ProjectSection(SolutionItems) = preProject
+		..\externals\pianoshooter\PianoShooter.zgeproj = ..\externals\pianoshooter\PianoShooter.zgeproj
+		..\externals\pianoshooter\readme.md = ..\externals\pianoshooter\readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LyricText", "LyricText", "{5185DA12-86FC-4FA1-A392-0AE75C80F3DA}"
+	ProjectSection(SolutionItems) = preProject
+		..\externals\lyrictext\LyricText.zgeproj = ..\externals\lyrictext\LyricText.zgeproj
+		..\externals\lyrictext\README.md = ..\externals\lyrictext\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -46,6 +60,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1CCCAF87-45BD-4F37-AED4-EF7B3AA4C9BC} = {9B30A410-8094-44B0-B3B7-39A075F7C7DE}
+		{5185DA12-86FC-4FA1-A392-0AE75C80F3DA} = {9B30A410-8094-44B0-B3B7-39A075F7C7DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFC545A4-A3CA-4DA1-86E7-4CCBDBF44B6F}

@@ -27,7 +27,7 @@ MidiMuckController::MidiMuckController()
     , m_uiResource(IDR_MIDIMUCKUI)
     , m_uiDesc(&m_uiResource)
 {
-    IMPTRACE("MIDMuckController created");
+    IMPTRACE("MIDMuckController created. Version: %s",FULL_VERSION_STR);
 }
 
 MidiMuckController::~MidiMuckController()
@@ -128,8 +128,12 @@ IPlugView* PLUGIN_API MidiMuckController::createView(FIDString name)
     // Create editor views...
     if(FIDStringsEqual(name, Vst::ViewType::kEditor))
     {
-        auto* view = new VSTGUI::VST3Editor(&m_uiDesc, this, "view");
+        VSTGUI::VST3Editor* view = new VSTGUI::VST3Editor(&m_uiDesc, this, "view");
         IMPTRACE("Created view for editor at %p", view);
+        if(view)
+        {
+            
+        }
         return view;
     }
     return nullptr;
