@@ -6,6 +6,7 @@
 //
 #include "imp_resource.h"
 #include "imp_platform.h"
+#include <stdexcept>
 
 namespace impostorem
 {

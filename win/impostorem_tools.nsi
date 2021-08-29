@@ -2,7 +2,7 @@ RequestExecutionLevel Admin
 Unicode True
 
 !define PRODUCT_NAME "Impostorem Tools"
-!define PRODUCT_VERSION "1.1.1.0"
+!define PRODUCT_VERSION "1.1.2.0"
 !define PRODUCT_PUBLISHER "Impostorem"
 !define PRODUCT_WEB_SITE "https://www.impostorem.com"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
