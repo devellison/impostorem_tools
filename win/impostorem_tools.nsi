@@ -57,6 +57,7 @@ Section "VST Plugins" SEC01
   File "..\README.md"
   File "..\doc\pdf\README.pdf"
   File "..\LICENSE"
+  File "..\examples\4567.flp"
 
   SetOutPath "$INSTDIR\images"
   File "..\doc\images\VST_Compatible_Logo_Steinberg_with_TM_negative.png"
